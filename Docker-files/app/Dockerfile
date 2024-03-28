@@ -2,7 +2,7 @@ FROM openjdk:11 AS BUILD_IMAGE
 LABEL "Project"="vprofile"
 LABEL "Author"="Kaleem"
 RUN apt update && apt install maven -y
-RUN git clone https://github.com/ammukaleem/vprofile-project.git
+RUN git clone --branch docker https://github.com/ammukaleem/vprofile-project.git
 RUN cd vprofile-project && mvn install
 
 FROM tomcat:9-jre11
