@@ -18,14 +18,14 @@ services:
       - "11211:11211"
 
   vpromq01:
-  image: rabbitmq:management
-  ports:
-    - "5672:5672"
-    - "15672:15672"
-  environment: 
-    - RABBITMQ_DEFAULT_USER=guest
-    - RABBITMQ_DEFAULT_PASS=guest       
-       
+    image: rabbitmq:management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment: 
+      - RABBITMQ_DEFAULT_USER=myuser
+      - RABBITMQ_DEFAULT_PASS=mypassword
+
   vproapp:
     build:
       context: ./Docker-files/app
@@ -35,10 +35,6 @@ services:
       - "8080:8080"
     volumes:
       - vproappdata:/usr/local/tomcat/webapps
-    depends_on:
-    - vprodb
-    - vprocache01
-    - vpromq01  
 
   vproweb:
     build:
