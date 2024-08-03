@@ -20,17 +20,13 @@ services:
   vpromq01:
     image: rabbitmq:management
     ports:
-      - "5672:5672"
       - "15672:15672"
     environment: 
       - RABBITMQ_DEFAULT_USER=myuser
       - RABBITMQ_DEFAULT_PASS=mypassword
     volumes:
       - ./rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
-    networks:
-      - vprofile-net
-    restart: always  # Ensure it always restarts
-
+    
   vproapp:
     build:
       context: ./Docker-files/app
@@ -52,7 +48,4 @@ services:
 volumes:
   vprodbdata: {}
   vproappdata: {}
-networks:
-  default:
-    name: mynetwork
-    driver: bridge
+
